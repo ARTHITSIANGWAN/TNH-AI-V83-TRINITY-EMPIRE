@@ -1,13 +1,11 @@
 #:schema node_modules/wrangler/config-schema.json
-# เปลี่ยนชื่อให้ตรงกับจักรวรรดิ ป้องกันบอทสับสนพอร์ตชน
 name = "tnh-ai-v83-trinity-empire"
 main = "src/index.ts"
 compatibility_date = "2026-05-06"
 compatibility_flags = [ "nodejs_compat" ]
 
-# เปิดวาล์วพิเศษให้ Cloudflare ยอมรับการรันไฟล์คอมไพล์ภาษา Go (.wasm) ร่วมกับ TypeScript ได้
-[rules]
-[[rules.builders]]
+# ✅ แก้ไขตรงนี้ให้คลีน: เปลี่ยนจาก [rules] เป็น [[rules]] อาร์เรย์ตรงๆ ตามกฎเวอร์ชันล่าสุด
+[[rules]]
 type = "WebAssembly"
 globs = ["**/*.wasm"]
 
@@ -17,12 +15,12 @@ binding = "DB"
 database_name = "thitnueahub-core-db"
 database_id = "6a8b4373-bf40-4b63-bb02-f612ecbe63b7"
 
-# 2. การเชื่อมต่อ R2 สำหรับเก็บรูปภาพและวิดีโอเด็กเฝ้าควาย
+# 2. การเชื่อมต่อ R2 สำหรับเก็บรูปภาพและวิดีโอ
 [[r2_buckets]]
 binding = "TNH_R2"
 bucket_name = "thitnueahub-assets"
 
-# 3. การเชื่อมต่อ KV สำหรับเก็บสถานะเปิดเพลงและ Load Balancing
+# 3. การเชื่อมต่อ KV สำหรับเก็บสถานะ
 [[kv_namespaces]]
 binding = "TNH_KV"
 id = "2fa0a4773efa4a18b1534274d238dd76"
@@ -30,4 +28,3 @@ id = "2fa0a4773efa4a18b1534274d238dd76"
 # 4. ตั้งค่า AI สำหรับประมวลผลคำสั่งขุนพล
 [ai]
 binding = "AI"
-
